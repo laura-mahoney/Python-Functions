@@ -68,8 +68,21 @@ included in the doctest.
 #        here', where are you from?" depending on what the function from part
 #        (a) evaluates to.
 
+def is_home_town(town): #create my function 
+    if town is "Danville":  #if the town is Danville, return true
+        return True
+    else:               #else return false
+        return False
 
 
+def full_name(first, last): #function declared to concatenate first and last name
+    return first + last
+
+def introduction(town, first, last):    
+    if is_home_town == True:    #if hometown is true
+        print "Hi, " + full_name(first, last) + ", we're from the same place!"
+    else: 
+        print "Hi, " + full_name(first,last) + ", where are you from?"
 ###############################################################################
 
 # PART TWO
@@ -81,7 +94,14 @@ included in the doctest.
 
 def is_berry(fruit):
     """Determines if fruit is a berry"""
-
+    if fruit is "strawberry":   #checking for each condition match, not checking length
+        return True
+    if fruit is  "cherry":
+        return True
+    if fruit is "blackberry":
+        return True
+    else: 
+        return False        #false will be returned if the word is not a berry
     pass
 
 
@@ -92,7 +112,10 @@ def is_berry(fruit):
 
 def shipping_cost(fruit):
     """Calculates shipping cost of fruit"""
-
+    if is_berry(fruit):     #is berry returns true if the fruit is a berry, and true produces the value 0
+        return 0
+    else:
+        return 5    #return five if false
     pass
 
 
@@ -103,7 +126,12 @@ def shipping_cost(fruit):
 def append_to_list(lst, num):
     """Creates a new list consisting of the old list with the given number
        added to the end."""
+    added_input = [] #we make an empty list 
 
+    added_input.extend(lst) #we add the pre-existing list to it using extend
+    added_input.append(num) #the final number gets appended, since it's one item
+    
+    return added_input  #returning the new list
     pass
 
 
@@ -124,8 +152,25 @@ def append_to_list(lst, num):
 #    Your function should return the total cost of the item, including tax and
 #    fees.
 
-def calculate_price(FILL_ME_IN):
-
+def calculate_price(itemprice, ST, tax = .05): #define parameters, inc optional parameters
+    import math                            #import math module 
+    total_with_tax = itemprice + (itemprice * tax) #set up calc for total when exceptions by state are not met
+    
+    if ST is "CA":              #set up conditions for each state based on fees and modify and return totals 
+        state_fee = total_with_tax * .03
+        total_with_fee = state_fee + total_with_tax
+        return math.floor(total_with_fee)
+    if ST is "PA":
+        total_with_fee = total_with_tax + 2.0
+        return total_with_fee
+    if ST is "MA":
+        if itemprice < 100: 
+            total_with_fee = 1.0 + total_with_tax
+        elif itemprice > 100: 
+            total_with_fee = 3.0 + total_with_tax
+        return total_with_fee
+    else: 
+        return total_with_tax # returns the total when exceptions by state are not met
     pass
 
 
@@ -155,6 +200,17 @@ def calculate_price(FILL_ME_IN):
 
 #>>> outer("Balloonicorn")
 #('Balloonicorn', 'BalloonicornBalloonicornBalloonicorn')
+def appended_list_byargs(somelist, *args):
+    for a in args: 
+        somelist.extend(a)
+    return somelist
+
+def repeat_three_times(word):
+    
+    def multiply_by_3(x):
+        return x * 3
+
+    multiply_by_3(word)
 
 
 ###############################################################################
